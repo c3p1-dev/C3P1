@@ -1,0 +1,20 @@
+﻿@page "/admin/users"
+@using C3P1.Client.Components.Admin.ManageUser
+@inject NavBreadcrumbService navBreadcrumb
+
+<AuthorizeView Roles="Admin">
+    <ManageUser />
+</AuthorizeView>
+
+@code {
+    protected override void OnInitialized()
+    {
+        navBreadcrumb.SetBreadcrumbs(new()
+        {
+            new Node() { Text = "Home", Link = "" },
+            new Node() { Text = "Manage users", Link = "admin/users", Active = true }
+        });
+
+        base.OnInitialized();
+    }
+}

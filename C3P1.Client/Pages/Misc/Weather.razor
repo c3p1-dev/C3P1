@@ -1,0 +1,72 @@
+﻿@page "/misc/weather"
+@inject NavBreadcrumbService navBreadcrumb
+
+<PageTitle>C3P1.net/Weather</PageTitle>
+
+<Heading Size="HeadingSize.Is3">Weather</Heading>
+<Divider />
+
+<Paragraph>This component demonstrates showing data.</Paragraph>
+
+@if (forecasts == null)
+{
+    <Paragraph><em>Loading...</em></Paragraph>
+}
+else
+{
+    <Table>
+        <TableHeader>
+            <TableRow>
+                <TableHeaderCell>Date</TableHeaderCell>
+                <TableHeaderCell>Temp. (C)</TableHeaderCell>
+                <TableHeaderCell>Temp. (F)</TableHeaderCell>
+                <TableHeaderCell>Summary</TableHeaderCell>
+            </TableRow>
+        </TableHeader>
+        <TableBody>
+            @foreach (var forecast in forecasts)
+            {
+                <TableRow>
+                    <TableRowCell>@forecast.Date.ToShortDateString()</TableRowCell>
+                    <TableRowCell>@forecast.TemperatureC</TableRowCell>
+                    <TableRowCell>@forecast.TemperatureF</TableRowCell>
+                    <TableRowCell>@forecast.Summary</TableRowCell>
+                </TableRow>
+            }
+        </TableBody>
+    </Table>
+}
+
+@code {
+    private WeatherForecast[]? forecasts;
+
+    protected override async Task OnInitializedAsync()
+    {
+        // set navbreadcrumb
+        navBreadcrumb.SetBreadcrumbs(new List<Node>()
+        {
+            new Node {Text = "Home", Link = ""},
+            new Node {Text = "Weather", Link = "misc/weather", Active = true}
+        });
+
+        // Simulate asynchronous loading to demonstrate a loading indicator
+        await Task.Delay(1000);
+
+        var startDate = DateOnly.FromDateTime(DateTime.Now);
+        var summaries = new[] { "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching" };
+        forecasts = Enumerable.Range(1, 5).Select(index => new WeatherForecast
+        {
+            Date = startDate.AddDays(index),
+            TemperatureC = Random.Shared.Next(-20, 55),
+            Summary = summaries[Random.Shared.Next(summaries.Length)]
+        }).ToArray();
+    }
+
+    private class WeatherForecast
+    {
+        public DateOnly Date { get; set; }
+        public int TemperatureC { get; set; }
+        public string? Summary { get; set; }
+        public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+    }
+}

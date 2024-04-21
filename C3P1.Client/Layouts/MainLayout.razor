@@ -1,0 +1,70 @@
+﻿@using C3P1.Client.Components.Layout
+@using C3P1.Client.Components.Shared
+
+@inherits LayoutComponentBase
+
+
+@if ( layoutType == "fixed-header" )
+{
+    <DivLayout Sider>
+        <LayoutSider>
+            <LayoutSiderContent>
+                <SideMenu />
+            </LayoutSiderContent>
+        </LayoutSider>
+        <DivLayout>
+            <LayoutHeader Fixed>
+                <TopMenu ThemeEnabledChanged="@OnThemeEnabledChanged"
+                     ThemeGradientChanged="@OnThemeGradientChanged"
+                     ThemeRoundedChanged="@OnThemeRoundedChanged"
+                     ThemeColorChanged="@OnThemeColorChanged"
+                     @bind-LayoutType="@layoutType" />
+            </LayoutHeader>
+            <LayoutContent Padding="Padding.Is3.OnX.Is3.FromTop" Class="main-layout">
+                @Body
+            </LayoutContent>
+        </DivLayout>
+    </DivLayout>
+}
+else if ( layoutType == "fixed-header-footer-only" )
+{
+    <DivLayout>
+        <LayoutHeader Fixed>
+            <TopMenu ThemeEnabledChanged="@OnThemeEnabledChanged"
+                 ThemeGradientChanged="@OnThemeGradientChanged"
+                 ThemeRoundedChanged="@OnThemeRoundedChanged"
+                 ThemeColorChanged="@OnThemeColorChanged"
+                 @bind-LayoutType="@layoutType" />
+        </LayoutHeader>
+        <LayoutContent Padding="Padding.Is3.OnX.Is3.FromTop" Class="main-layout">
+            @Body
+        </LayoutContent>
+        <LayoutFooter Fixed>
+            <FooterMenu></FooterMenu>
+        </LayoutFooter>
+    </DivLayout>
+}
+else if ( layoutType == "sider-with-header-on-top" )
+{
+    <DivLayout>
+        <LayoutHeader Fixed>
+            <TopMenu ThemeEnabledChanged="@OnThemeEnabledChanged"
+                 ThemeGradientChanged="@OnThemeGradientChanged"
+                 ThemeRoundedChanged="@OnThemeRoundedChanged"
+                 ThemeColorChanged="@OnThemeColorChanged"
+                 @bind-LayoutType="@layoutType" />
+        </LayoutHeader>
+        <DivLayout Sider>
+            <LayoutSider>
+                <LayoutSiderContent>
+                    <SideMenu />
+                </LayoutSiderContent>
+            </LayoutSider>
+            <DivLayout>
+                <LayoutContent Padding="Padding.Is3.OnX.Is3.FromTop" Class="main-layout">
+                    @Body
+                </LayoutContent>
+            </DivLayout>
+        </DivLayout>
+    </DivLayout>
+}

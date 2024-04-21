@@ -1,0 +1,193 @@
+﻿@page "/misc/demo"
+@inject NavBreadcrumbService navBreadcrumb
+
+<PageTitle>C3P1.Net/Demo</PageTitle>
+
+<Heading Size="HeadingSize.Is3">Components demo</Heading>
+<Divider />
+
+<CardGroup Margin="Margin.Is2.FromBottom">
+    <Card Padding="Padding.Is2">
+        <CardTitle Size="5">Buttons</CardTitle>
+        <CardText>
+            <Button Margin=Margin.Is1.OnAll Color="Color.Primary">Primary</Button>
+            <Button Margin=Margin.Is1.OnAll Color ="Color.Secondary">Secondary</Button>
+            <Button Margin=Margin.Is1.OnAll Color ="Color.Danger">Danger</Button>
+            <Button Margin=Margin.Is1.OnAll Color ="Color.Success">Success</Button>
+            <Button Margin=Margin.Is1.OnAll Color ="Color.Info">Info</Button>
+            <Button Margin=Margin.Is1.OnAll Color ="Color.Warning">Warning</Button>
+            <Button Margin=Margin.Is1.OnAll Color ="Color.Dark">Dark</Button>
+            <Button Margin=Margin.Is1.OnAll Color ="Color.Light">Light</Button>
+            <Button Margin=Margin.Is1.OnAll Color ="Color.Default">Default</Button>
+            <Button Margin=Margin.Is1.OnAll Color ="Color.Link">Link</Button>
+
+            <Button Margin=Margin.Is1.OnAll Color="Color.Primary" Size="Size.Small" Outline>Primary</Button>
+            <Button Margin=Margin.Is1.OnAll Color="Color.Secondary" Size="Size.Small" Outline>Secondary</Button>
+            <Button Margin=Margin.Is1.OnAll Color="Color.Danger" Size="Size.Small" Outline>Danger</Button>
+            <Button Margin=Margin.Is1.OnAll Color="Color.Success" Size="Size.Small" Outline>Success</Button>
+            <Button Margin=Margin.Is1.OnAll Color="Color.Info" Size="Size.Small" Outline>Info</Button>
+            <Button Margin=Margin.Is1.OnAll Color="Color.Warning" Size="Size.Small" Outline>Warning</Button>
+            <Button Margin=Margin.Is1.OnAll Color="Color.Dark" Size="Size.Small" Outline>Dark</Button>
+            <Button Margin=Margin.Is1.OnAll Color="Color.Light" Size="Size.Small" Outline>Light</Button>
+            <Button Margin=Margin.Is1.OnAll Color="Color.Default" Size="Size.Small" Outline>Default</Button>
+            <Button Margin=Margin.Is1.OnAll Color="Color.Link" Size="Size.Small" Outline>Link</Button>
+        </CardText>
+    </Card>
+    <Card Padding="Padding.Is2">
+        <CardTitle Size="5">Inputs</CardTitle>
+        <CardText>
+            <Div>
+                <TextEdit>TextEdit</TextEdit>
+            </Div>
+            <Div>
+                <MemoEdit>MemoEdit</MemoEdit>
+            </Div>
+            <Div>
+                <NumericEdit TValue="int">NumericEdit (int)</NumericEdit>
+            </Div>
+            <Div>
+                <NumericEdit TValue="double">NumericEdit (double)</NumericEdit>
+            </Div>
+        </CardText>
+    </Card>
+</CardGroup>
+<CardGroup Margin="Margin.Is2.FromBottom">
+    <Card Padding="Padding.Is2">
+        <CardTitle Size="5">Badges</CardTitle>
+        <Div>
+            <Badge Margin="Margin.Is1.OnAll" Color="Color.Primary">Primary</Badge>
+            <Badge Margin="Margin.Is1.OnAll" Color="Color.Secondary">Secondary</Badge>
+            <Badge Margin="Margin.Is1.OnAll" Color="Color.Danger">Danger</Badge>
+            <Badge Margin="Margin.Is1.OnAll" Color="Color.Success">Success</Badge>
+            <Badge Margin="Margin.Is1.OnAll" Color="Color.Info">Info</Badge>
+            <Badge Margin="Margin.Is1.OnAll" Color="Color.Warning">Warning</Badge>
+            <Badge Margin="Margin.Is1.OnAll" Color="Color.Dark">Dark</Badge>
+            <Badge Margin="Margin.Is1.OnAll" Color="Color.Light">Light</Badge>
+            <Badge Margin="Margin.Is1.OnAll" Color="Color.Default">Default</Badge>
+        </Div>
+        <CardTitle Size="5">Background</CardTitle>
+        <Div>
+            <Paragraph Background="Background.Primary">Primary</Paragraph>
+            <Paragraph Background="Background.Secondary">Secondary</Paragraph>
+            <Paragraph Background="Background.Danger">Danger</Paragraph>
+            <Paragraph Background="Background.Success">Success</Paragraph>
+            <Paragraph Background="Background.Info">Info</Paragraph>
+            <Paragraph Background="Background.Warning" TextColor="TextColor.Black50">Warning</Paragraph>
+            <Paragraph Background="Background.Dark">Dark</Paragraph>
+            <Paragraph Background="Background.Light" TextColor="TextColor.Black50">Light</Paragraph>
+            <Paragraph Background="Background.Default">Default</Paragraph>
+        </Div>
+    </Card>
+    <Card Padding="Padding.Is2">
+        <CardTitle Size="5">Alerts</CardTitle>
+        <Div>
+            <Alert Margin="Margin.Is1.OnAll" Color="Color.Primary" Visible>Primary</Alert>
+            <Alert Margin="Margin.Is1.OnAll" Color="Color.Secondary" Visible>Secondary</Alert>
+            <Alert Margin="Margin.Is1.OnAll" Color="Color.Danger" Visible>Danger</Alert>
+            <Alert Margin="Margin.Is1.OnAll" Color="Color.Success" Visible>Success</Alert>
+            <Alert Margin="Margin.Is1.OnAll" Color="Color.Info" Visible>Info</Alert>
+            <Alert Margin="Margin.Is1.OnAll" Color="Color.Warning" Visible>Warning</Alert>
+            <Alert Margin="Margin.Is1.OnAll" Color="Color.Dark" Visible>Dark</Alert>
+            <Alert Margin="Margin.Is1.OnAll" Color="Color.Light" Visible>Light</Alert>
+            <Alert Margin="Margin.Is1.OnAll" Color="Color.Default" Visible>Default</Alert>
+        </Div>
+    </Card>
+</CardGroup>
+<CardGroup Margin="Margin.Is2.FromBottom">
+    <Card Padding="Padding.Is2">
+        <CardTitle Size="5">LineChart</CardTitle>
+        <CardText>
+            <Button Color="Color.Primary" Clicked="@(async () => await HandleRedraw())">Redraw</Button>
+            <LineChart @ref="lineChart" TItem="double" />
+        </CardText>
+    </Card>
+    <Card Padding="Padding.Is2">
+        <CardTitle Size="5">BarChart</CardTitle>
+        <CardText>
+            <Button Color="Color.Primary" Clicked="@(async () => await HandleRedraw())">Redraw</Button>
+            <Chart @ref="barChart" Type="ChartType.Bar" TItem="double" />
+        </CardText>
+    </Card>
+</CardGroup>
+
+@code {
+    LineChart<double> lineChart = new();
+    Chart<double> barChart = new();
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await HandleRedraw();
+        }
+    }
+
+    protected override void OnInitialized()
+    {
+        // set navbreadcrumb
+        navBreadcrumb.SetBreadcrumbs(new List<Node>()
+        {
+            new Node {Text = "Home", Link = "" },
+            new Node {Text = "Demo", Link = "misc/demo", Active = true }
+        });
+        
+        base.OnInitialized();
+    }
+
+    async Task HandleRedraw()
+    {
+        await lineChart.Clear();
+        await lineChart.AddLabelsDatasetsAndUpdate(Labels, GetLineChartDataset());
+
+        await barChart.Clear();
+        await barChart.AddLabelsDatasetsAndUpdate(Labels, GetBarChartDataset());
+    }
+
+    LineChartDataset<double> GetLineChartDataset()
+    {
+        return new LineChartDataset<double>
+            {
+                Label = "# of randoms",
+                Data = RandomizeData(),
+                BackgroundColor = backgroundColors,
+                BorderColor = borderColors,
+                Fill = true,
+                PointRadius = 3,
+                CubicInterpolationMode = "monotone",
+            };
+    }
+    private BarChartDataset<double> GetBarChartDataset()
+    {
+        return new()
+            {
+                Label = "# of randoms",
+                Data = RandomizeData(),
+                BackgroundColor = backgroundColors,
+                BorderColor = borderColors,
+                BorderWidth = 1
+            };
+    }
+
+    string[] Labels = { "Red", "Blue", "Yellow", "Green", "Purple", "Orange", "Red", "Blue", "Yellow", "Green", "Purple", "Orange" };
+    List<string> backgroundColors = new List<string> { ChartColor.FromRgba(255, 99, 132, 0.2f), ChartColor.FromRgba(54, 162, 235, 0.2f), ChartColor.FromRgba(255, 206, 86, 0.2f), ChartColor.FromRgba(75, 192, 192, 0.2f), ChartColor.FromRgba(153, 102, 255, 0.2f), ChartColor.FromRgba(255, 159, 64, 0.2f) };
+    List<string> borderColors = new List<string> { ChartColor.FromRgba(255, 99, 132, 1f), ChartColor.FromRgba(54, 162, 235, 1f), ChartColor.FromRgba(255, 206, 86, 1f), ChartColor.FromRgba(75, 192, 192, 1f), ChartColor.FromRgba(153, 102, 255, 1f), ChartColor.FromRgba(255, 159, 64, 1f) };
+
+    List<double> RandomizeData()
+    {
+        var r = new Random(DateTime.Now.Millisecond);
+
+        return new List<double> {
+            r.Next( 3, 50 ) * r.NextDouble(),
+            r.Next( 3, 50 ) * r.NextDouble(),
+            r.Next( 3, 50 ) * r.NextDouble(),
+            r.Next( 3, 50 ) * r.NextDouble(),
+            r.Next( 3, 50 ) * r.NextDouble(),
+            r.Next( 3, 50 ) * r.NextDouble(),
+            r.Next( 3, 50 ) * r.NextDouble(),
+            r.Next( 3, 50 ) * r.NextDouble(),
+            r.Next( 3, 50 ) * r.NextDouble(),
+            r.Next( 3, 50 ) * r.NextDouble(),
+            r.Next( 3, 50 ) * r.NextDouble(),
+            r.Next( 3, 50 ) * r.NextDouble() };
+    }
+}

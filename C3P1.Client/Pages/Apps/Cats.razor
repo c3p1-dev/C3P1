@@ -1,0 +1,22 @@
+﻿@page "/apps/cats"
+@inject NavBreadcrumbService navBreadcrumb
+
+@attribute [Authorize]
+
+<PageTitle>C3P1.Net/Cats</PageTitle>
+
+<h3>Cats</h3>
+
+@code {
+    protected override void OnInitialized()
+    {
+        // setup breadcrumbs
+        navBreadcrumb.SetBreadcrumbs(new List<Node>()
+        {
+            new Node(){Text = "Home", Link = "" },
+            new Node(){Text = "Cats", Link = "apps/cats", Active = true}
+        });
+
+        base.OnInitialized();
+    }
+}

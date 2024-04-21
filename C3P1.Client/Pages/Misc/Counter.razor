@@ -1,0 +1,41 @@
+﻿@page "/misc/counter"
+@inject NavBreadcrumbService navBreadcrumb
+
+<PageTitle>C3P1.Net/Counter</PageTitle>
+
+<Heading Size="HeadingSize.Is3">
+    Counter
+</Heading>
+<Divider />
+
+<Paragraph>
+    Current count : @currentCount
+</Paragraph>
+
+<Button Color="Color.Primary" Clicked="IncrementCount">Click me</Button>
+<Button Color="Color.Secondary" Clicked="DecrementCount">Unclick me</Button>
+
+@code {
+    private int currentCount = 0;
+
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+    private void DecrementCount()
+    {
+        currentCount--;
+    }
+
+    protected override void OnInitialized()
+    {
+        // NavState (breadcrumbs, etc) is Scoped, so it lives as long as our connection lives.
+        // So when a new page is visited, we need to clear navigation to prevent breadcrumbs from bleed-over, etc.
+        // This also makes the navbar invisible by default.
+        navBreadcrumb.SetBreadcrumbs(new List<Node>()
+        {
+            new Node {Text = "Home", Link = "" },
+            new Node {Text = "Counter", Link = "misc/counter" , Active = true}
+        });
+    }
+}
