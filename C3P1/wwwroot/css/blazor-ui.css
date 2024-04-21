@@ -121,3 +121,23 @@ h1:focus {
         height: 5em !important;
         margin-top: 20px !important;
     }
+
+/* Blazor error footer */
+#blazor-error-ui {
+    background: indianred;
+    bottom: 0;
+    box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.2);
+    display: none;
+    left: 0;
+    padding: 0.6rem 1.25rem 0.7rem 1.25rem;
+    position: sticky;
+    width: 100%;
+    z-index: 1000;
+}
+
+    #blazor-error-ui .dismiss {
+        cursor: pointer;
+        position: absolute;
+        right: 0.75rem;
+        top: 0.5rem;
+    }

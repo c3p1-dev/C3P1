@@ -110,6 +110,9 @@
     </Card>
 </CardGroup>
 
+<Divider />
+<Button Color="Color.Primary" Clicked="MakeErr" Margin="Margin.Is3.FromBottom">Make an error</Button>
+
 @code {
     LineChart<double> lineChart = new();
     Chart<double> barChart = new();
@@ -189,5 +192,11 @@
             r.Next( 3, 50 ) * r.NextDouble(),
             r.Next( 3, 50 ) * r.NextDouble(),
             r.Next( 3, 50 ) * r.NextDouble() };
+    }
+
+
+    void MakeErr()
+    {
+        throw new Exception("Test error");
     }
 }

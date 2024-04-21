@@ -23,6 +23,13 @@
             <LayoutContent Padding="Padding.Is3.OnX.Is3.FromTop" Class="main-layout">
                 @Body
             </LayoutContent>
+            <LayoutFooter>
+                <div id="blazor-error-ui">
+                    An unhandled error has occurred.
+                    <a href="" class="reload">Reload</a>
+                    <a class="dismiss">🗙</a>
+                </div>
+            </LayoutFooter>
         </DivLayout>
     </DivLayout>
 }
@@ -40,7 +47,12 @@ else if ( layoutType == "fixed-header-footer-only" )
             @Body
         </LayoutContent>
         <LayoutFooter Fixed>
-            <FooterMenu></FooterMenu>
+            <div id="blazor-error-ui">
+                An unhandled error has occurred.
+                <a href="" class="reload">Reload</a>
+                <a class="dismiss">🗙</a>
+            </div>
+            <FooterMenu />
         </LayoutFooter>
     </DivLayout>
 }
@@ -64,6 +76,13 @@ else if ( layoutType == "sider-with-header-on-top" )
                 <LayoutContent Padding="Padding.Is3.OnX.Is3.FromTop" Class="main-layout">
                     @Body
                 </LayoutContent>
+                <LayoutFooter>
+                    <div id="blazor-error-ui">
+                        An unhandled error has occurred.
+                        <a href="" class="reload">Reload</a>
+                        <a class="dismiss">🗙</a>
+                    </div>
+                </LayoutFooter>
             </DivLayout>
         </DivLayout>
     </DivLayout>
