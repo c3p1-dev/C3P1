@@ -361,5 +361,13 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# Ignore appsettings.json
 /C3P1/appsettings.json
 /C3P1/appsettings.Development.json
+
+# Ignore database files
+/C3P1/*.db*
+/C3P1/C3P1.db
+/C3P1/C3P1.db-shm
+/C3P1/C3P1.db-wal
