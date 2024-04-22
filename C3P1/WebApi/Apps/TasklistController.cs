@@ -1,12 +1,10 @@
-﻿using C3P1.Client.Components.Admin.ManageUser;
-using C3P1.Client.Components.Apps.Tasklist;
+﻿using C3P1.Client.Components.Apps.Tasklist;
 using C3P1.Client.Services.Apps;
 using C3P1.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using SQLitePCL;
 
 namespace C3P1.WebApi.Apps
 {
@@ -55,7 +53,7 @@ namespace C3P1.WebApi.Apps
         }
         // GET : api/apps/[controller]/todo
         [HttpGet]
-        [Route ("todo")]
+        [Route("todo")]
         public async Task<ActionResult<IEnumerable<TodoItem>>> GetTasklistTodo()
         {
             // get user id
@@ -83,7 +81,7 @@ namespace C3P1.WebApi.Apps
         }
         // GET : api/apps/[controller]/done
         [HttpGet]
-        [Route ("done")]
+        [Route("done")]
         public async Task<ActionResult<IEnumerable<TodoItem>>> GetTasklistDone()
         {
             // get user id
@@ -215,7 +213,7 @@ namespace C3P1.WebApi.Apps
 
         // GET : api/apps/[controller]/todo/markasdone
         [HttpGet("todo/markasdone")]
-        public  async Task<ActionResult<List<TodoItem>>> MarkTasklistAsDone()
+        public async Task<ActionResult<List<TodoItem>>> MarkTasklistAsDone()
         {
             // get user id
             var name = User.Identity?.Name;

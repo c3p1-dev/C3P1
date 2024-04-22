@@ -1,20 +1,18 @@
 using Blazorise;
-using C3P1.Client.Pages;
-using C3P1.Components;
-using C3P1.Components.Account;
-using C3P1.Data;
-using Microsoft.AspNetCore.Components.Authorization;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using Blazorise.Bootstrap5;
 using Blazorise.Icons.FontAwesome;
 using Blazr.RenderState.Server;
 using C3P1.Client.Services;
-using C3P1.Client.Services.Apps;
-using C3P1.Services.Apps;
-using C3P1.Client.Components.Admin.ManageUser;
 using C3P1.Client.Services.Admin;
+using C3P1.Client.Services.Apps;
+using C3P1.Components;
+using C3P1.Components.Account;
+using C3P1.Data;
 using C3P1.Services.Admin;
+using C3P1.Services.Apps;
+using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace C3P1
 {
@@ -45,7 +43,7 @@ namespace C3P1
                 })
                 .AddIdentityCookies();
 
-            var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+            var connectionString = builder.Configuration["ConnectionStrings:DefaultConnection"] ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
             builder.Services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlite(connectionString));
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
@@ -63,6 +61,7 @@ namespace C3P1
                 .AddBlazorise(options =>
                 {
                     options.Immediate = true;
+                    options.ProductToken = builder.Configuration["Blazorise:ProductToken"] ?? throw new InvalidOperationException("Blazorise license token 'ProductToken' not found.");
                 })
                 .AddBootstrap5Providers()
                 .AddFontAwesomeIcons();

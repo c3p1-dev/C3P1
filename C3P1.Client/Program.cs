@@ -26,6 +26,8 @@ namespace C3P1.Client
                 .AddBlazorise(options =>
                 {
                     options.Immediate = true;
+                    // unsafe way to store product token, TODO : figure out how to store secret strings in wasm
+                    options.ProductToken = builder.Configuration["Blazorise:ProductToken"] ?? throw new InvalidOperationException("Blazorise license token 'ProductToken' not found."); ;
                 })
                 .AddBootstrap5Providers()
                 .AddFontAwesomeIcons();
@@ -37,9 +39,9 @@ namespace C3P1.Client
             builder.Services.AddScoped<NavBreadcrumbService>();
 
             // Add HttpClient
-            builder.Services.AddScoped(sp => new HttpClient 
-            { 
-                BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) 
+            builder.Services.AddScoped(sp => new HttpClient
+            {
+                BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)
             });
 
             // Add app services

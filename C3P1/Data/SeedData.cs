@@ -1,5 +1,4 @@
-﻿using C3P1.Client.Components.Admin.ManageUser;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace C3P1.Data

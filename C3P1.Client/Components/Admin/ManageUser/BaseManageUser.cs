@@ -1,10 +1,7 @@
 ﻿using Blazorise;
 using C3P1.Client.Services.Admin;
-using C3P1.Client.Services.Apps;
 using C3P1.Data;
 using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Authorization;
-using Microsoft.AspNetCore.Identity;
 
 namespace C3P1.Client.Components.Admin.ManageUser
 {
@@ -46,7 +43,7 @@ namespace C3P1.Client.Components.Admin.ManageUser
 
             var result = await manageUserService!.GetUsersAsync();
 
-            foreach(var user in result)
+            foreach (var user in result)
             {
                 AppUserWithRoles a = new AppUserWithRoles();
                 a.User = user;
@@ -74,7 +71,7 @@ namespace C3P1.Client.Components.Admin.ManageUser
         protected async Task DeleteUser(AppUser user)
         {
             if (await messageService!.Confirm($"Are you sure you want to delete {user.Email} ?", "Confirmation"))
-            { 
+            {
                 await manageUserService!.DeleteUserAsync(user);
                 await LoadData();
 

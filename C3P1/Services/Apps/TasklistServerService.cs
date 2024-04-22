@@ -1,8 +1,6 @@
 ﻿using C3P1.Client.Components.Apps.Tasklist;
 using C3P1.Client.Services.Apps;
 using C3P1.Data;
-using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace C3P1.Services.Apps
@@ -104,7 +102,7 @@ namespace C3P1.Services.Apps
         {
             List<TodoItem> result = new List<TodoItem>();
 
-            foreach(var task in _context.Tasklist.Where(x => x.UserId == userId && x.Completed == false))
+            foreach (var task in _context.Tasklist.Where(x => x.UserId == userId && x.Completed == false))
             {
                 task.Completed = true;
                 result.Add(task);

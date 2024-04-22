@@ -13,7 +13,7 @@ namespace C3P1.Client.Services.Admin
         }
         public async Task<List<AppUser>> GetUsersAsync()
         {
-            var result = await _httpClient.GetFromJsonAsync<List<AppUser>>("api/admin/manageuser/list/user");
+            var result = await _httpClient.GetFromJsonAsync<List<AppUser>>("api/admin/manageuser/list/users");
 
             if (result != null)
             {

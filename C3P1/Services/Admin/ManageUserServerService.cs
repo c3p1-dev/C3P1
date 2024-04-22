@@ -90,7 +90,7 @@ namespace C3P1.Services.Admin
             // check if user is in role
             bool check = await _userManager.IsInRoleAsync(user, role);
 
-            if(check)
+            if (check)
             {
                 // remove from role
                 var result = await _userManager.RemoveFromRoleAsync(user, role);

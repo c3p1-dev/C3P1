@@ -1,12 +1,12 @@
-﻿using C3P1.Data;
-using C3P1.Client.Components.Apps.Tasklist;
+﻿using C3P1.Client.Components.Apps.Tasklist;
 using C3P1.Client.Services.Admin;
+using C3P1.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace C3P1.WebApi.Admin
 {
-    [Authorize (Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     [Route("api/admin/[controller]")]
     [ApiController]
     public class ManageUserController : ControllerBase
@@ -17,7 +17,7 @@ namespace C3P1.WebApi.Admin
             _manageUserService = manageUserService;
         }
         // GET : api/admin/[controller]
-        [HttpGet("list/user")]
+        [HttpGet("list/users")]
         public async Task<ActionResult<IEnumerable<AppUser>>> GetUsersAsync()
         {
             var result = await _manageUserService.GetUsersAsync();

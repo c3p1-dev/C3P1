@@ -17,7 +17,7 @@ namespace C3P1.Client.Components.Apps.Tasklist
             get
             {
                 if (tasklist != null)
-                { 
+                {
                     var query = from t in tasklist select t;
 
                     if (filter == Filter.Todo)
@@ -88,7 +88,7 @@ namespace C3P1.Client.Components.Apps.Tasklist
 
         protected Task OnTodoStatusChanged(bool isChecked)
         {
-            return InvokeAsync(StateHasChanged);   
+            return InvokeAsync(StateHasChanged);
         }
     }
 }
