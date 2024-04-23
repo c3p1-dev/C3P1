@@ -41,7 +41,15 @@ namespace C3P1.Client.Components.Admin.ManageUser
                 users.Clear();
             }
 
-            var result = await manageUserService!.GetUsersAsync();
+            var regularUsers = await manageUserService!.GetUsersAsync();
+            var adminUsers = await manageUserService!.GetUsersInRoleAsync("Admin");
+
+            foreach (var user in adminUsers)
+            {
+                regularUsers.Remove(user);
+            }
+
+            var result = adminUsers.Concat(regularUsers);
 
             foreach (var user in result)
             {
