@@ -46,7 +46,11 @@ namespace C3P1.Client.Components.Admin.ManageUser
 
             foreach (var user in adminUsers)
             {
-                regularUsers.Remove(user);
+                var u = regularUsers.Where(x => x.UserName == user.UserName).FirstOrDefault();
+                if (u != null)
+                { 
+                    regularUsers.Remove(u);
+                }
             }
 
             var result = adminUsers.Concat(regularUsers).ToList();
