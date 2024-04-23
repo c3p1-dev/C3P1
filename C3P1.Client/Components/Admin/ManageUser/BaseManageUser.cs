@@ -49,7 +49,7 @@ namespace C3P1.Client.Components.Admin.ManageUser
                 regularUsers.Remove(user);
             }
 
-            var result = adminUsers.Concat(regularUsers);
+            var result = adminUsers.Concat(regularUsers).ToList();
 
             foreach (var user in result)
             {
