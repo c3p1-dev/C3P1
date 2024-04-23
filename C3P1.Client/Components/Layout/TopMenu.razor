@@ -123,7 +123,26 @@
             </BarItem>
             *@
             <BarItem>
-                <BarLink To="https://github.com/c3p1-dev/C3P1" Target="Target.Blank">GitHub</BarLink>
+                @if (OperatingSystem.IsBrowser())
+                {
+                    <BarLink To="https://dotnet.microsoft.com/en-us/apps/aspnet/web-apps/blazor" Target="Target.Blank">
+                        <Image Source="pix/icons/blazor-light.svg" Height="Height.Px(25)" Margin="Margin.Is1.FromBottom.Is1.FromEnd" />
+                        Blazor Wasm
+                    </BarLink>
+                }
+                else
+                {
+                    <BarLink To="https://dotnet.microsoft.com/en-us/apps/aspnet/web-apps/blazor" Target="Target.Blank">
+                        <Image Source="pix/icons/blazor-light.svg" Height="Height.Px(25)" Margin="Margin.Is1.FromBottom.Is1.FromEnd" />
+                        Blazor Server
+                    </BarLink>
+                }
+            </BarItem>
+            <BarItem>
+                <BarLink To="https://github.com/c3p1-dev/C3P1" Target="Target.Blank">
+                    <Image Source="pix/icons/github.svg" Height="Height.Px(25)" Margin="Margin.Is1.FromBottom.Is1.FromEnd"/>
+                    GitHub
+                </BarLink>
             </BarItem>
         </BarEnd>
     </BarMenu>
