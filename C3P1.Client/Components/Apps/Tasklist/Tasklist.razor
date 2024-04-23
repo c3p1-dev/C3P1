@@ -21,7 +21,7 @@
         <ListGroup Flush>
             @if (Tasklist == null)
             {
-                <Paragraph>
+                <Paragraph TextAlignment="TextAlignment.Center" Padding="Padding.Is2">
                     Tasklist is loading ...
                 </Paragraph>
             }
@@ -29,15 +29,15 @@
             {
                 @if (filter == Filter.Todo)
                 {
-                    <Paragraph>Nothing todo</Paragraph>
+                    <Paragraph TextAlignment="TextAlignment.Center" Padding="Padding.Is2">Nothing to do</Paragraph>
                 }
                 else if (filter == Filter.Done)
                 {
-                    <Paragraph>Nothing done</Paragraph>
+                    <Paragraph TextAlignment="TextAlignment.Center" Padding="Padding.Is2">Nothing done</Paragraph>
                 }
                 else if (filter == Filter.All)
                 {
-                    <Paragraph>Tasklist is empty</Paragraph>
+                    <Paragraph TextAlignment="TextAlignment.Center" Padding="Padding.Is2">Tasklist is empty</Paragraph>
                 }
             }
             else
@@ -61,7 +61,7 @@
             <FieldBody ColumnSize="ColumnSize.Is4">
                 @if (Tasklist.Any(x => x.Completed == true))
                 {
-                    <Button Color="Color.Danger" Float="Float.End" Clicked="@DeleteDoneTasks">Clear</Button>
+                    <Button Color="Color.Danger" Float="Float.End" Clicked="@DeleteDoneTasks">Clear done</Button>
                 }
                 else if (filter == Filter.Todo && Tasklist.Count() > 0)
                 {
