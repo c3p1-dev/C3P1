@@ -1,10 +1,9 @@
 ﻿@page "/admin/users"
 @using C3P1.Client.Components.Admin.ManageUser
 @inject NavBreadcrumbService navBreadcrumb
+@attribute [Authorize(Roles = "Admin")]
 
-<AuthorizeView Roles="Admin">
-    <ManageUser />
-</AuthorizeView>
+<ManageUser />
 
 @code {
     protected override void OnInitialized()
