@@ -1,5 +1,6 @@
 ﻿@using Blazr.RenderState
 @using C3P1.Client.Components.Layout
+@using C3P1.Client.Pages.Error
 @inject IBlazrRenderStateService RenderState
 @inject NavigationManager NavManager
 
@@ -21,6 +22,9 @@
             </AuthorizeRouteView>
             <FocusOnNavigate RouteData="routeData" Selector="h1" />
         </Found>
+        <NotFound>
+            <ErrNotFound />
+        </NotFound>
     </Router>
 </ThemeProvider>
 
@@ -89,6 +93,17 @@
             {
                 BackgroundLevel = 10,
                 ColorLevel = -5
+            },
+            TextColorOptions = new()
+            {
+                Primary = "#9b59b6",
+                Secondary = "#5c6bc0",
+                Success = "#53b056",
+                Info = "#2196f3",
+                Warning = "#ffd54f",
+                Danger = "#ef5350",
+                Light = "#F0F0F0",
+                Dark = "#535353",
             }
         };
 }

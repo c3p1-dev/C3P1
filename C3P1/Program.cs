@@ -112,6 +112,9 @@ namespace C3P1
             // Add additional endpoints required by the Identity /Account Razor components.
             app.MapAdditionalIdentityEndpoints();
 
+            // Manage 404
+            app.UseStatusCodePagesWithReExecute("/error/errnotfound", "?statusCode={0}").UseAntiforgery();
+
             // Create and seed database on first run
             using IServiceScope scope = app.Services.CreateScope();
             IServiceProvider services = scope.ServiceProvider;
