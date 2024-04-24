@@ -10,27 +10,31 @@
     <Card Padding="Padding.Is2">
         <CardTitle Size="5">Buttons</CardTitle>
         <CardText>
-            <Button Margin=Margin.Is1.OnAll Color="Color.Primary">Primary</Button>
-            <Button Margin=Margin.Is1.OnAll Color ="Color.Secondary">Secondary</Button>
-            <Button Margin=Margin.Is1.OnAll Color ="Color.Danger">Danger</Button>
-            <Button Margin=Margin.Is1.OnAll Color ="Color.Success">Success</Button>
-            <Button Margin=Margin.Is1.OnAll Color ="Color.Info">Info</Button>
-            <Button Margin=Margin.Is1.OnAll Color ="Color.Warning">Warning</Button>
-            <Button Margin=Margin.Is1.OnAll Color ="Color.Dark">Dark</Button>
-            <Button Margin=Margin.Is1.OnAll Color ="Color.Light">Light</Button>
-            <Button Margin=Margin.Is1.OnAll Color ="Color.Default">Default</Button>
-            <Button Margin=Margin.Is1.OnAll Color ="Color.Link">Link</Button>
-
-            <Button Margin=Margin.Is1.OnAll Color="Color.Primary" Size="Size.Small" Outline>Primary</Button>
-            <Button Margin=Margin.Is1.OnAll Color="Color.Secondary" Size="Size.Small" Outline>Secondary</Button>
-            <Button Margin=Margin.Is1.OnAll Color="Color.Danger" Size="Size.Small" Outline>Danger</Button>
-            <Button Margin=Margin.Is1.OnAll Color="Color.Success" Size="Size.Small" Outline>Success</Button>
-            <Button Margin=Margin.Is1.OnAll Color="Color.Info" Size="Size.Small" Outline>Info</Button>
-            <Button Margin=Margin.Is1.OnAll Color="Color.Warning" Size="Size.Small" Outline>Warning</Button>
-            <Button Margin=Margin.Is1.OnAll Color="Color.Dark" Size="Size.Small" Outline>Dark</Button>
-            <Button Margin=Margin.Is1.OnAll Color="Color.Light" Size="Size.Small" Outline>Light</Button>
-            <Button Margin=Margin.Is1.OnAll Color="Color.Default" Size="Size.Small" Outline>Default</Button>
-            <Button Margin=Margin.Is1.OnAll Color="Color.Link" Size="Size.Small" Outline>Link</Button>
+            <Div>
+                <Button Margin=Margin.Is1.OnAll Color="Color.Primary">Primary</Button>
+                <Button Margin=Margin.Is1.OnAll Color ="Color.Secondary">Secondary</Button>
+                <Button Margin=Margin.Is1.OnAll Color ="Color.Danger">Danger</Button>
+                <Button Margin=Margin.Is1.OnAll Color ="Color.Success">Success</Button>
+                <Button Margin=Margin.Is1.OnAll Color ="Color.Info">Info</Button>
+                <Button Margin=Margin.Is1.OnAll Color ="Color.Warning">Warning</Button>
+                <Button Margin=Margin.Is1.OnAll Color ="Color.Dark">Dark</Button>
+                <Button Margin=Margin.Is1.OnAll Color ="Color.Light">Light</Button>
+                <Button Margin=Margin.Is1.OnAll Color ="Color.Default">Default</Button>
+                <Button Margin=Margin.Is1.OnAll Color ="Color.Link">Link</Button>
+            </Div>
+            <Divider />
+            <Div>
+                <Button Margin=Margin.Is1.OnAll Color="Color.Primary" Size="Size.Small" Outline>Primary</Button>
+                <Button Margin=Margin.Is1.OnAll Color="Color.Secondary" Size="Size.Small" Outline>Secondary</Button>
+                <Button Margin=Margin.Is1.OnAll Color="Color.Danger" Size="Size.Small" Outline>Danger</Button>
+                <Button Margin=Margin.Is1.OnAll Color="Color.Success" Size="Size.Small" Outline>Success</Button>
+                <Button Margin=Margin.Is1.OnAll Color="Color.Info" Size="Size.Small" Outline>Info</Button>
+                <Button Margin=Margin.Is1.OnAll Color="Color.Warning" Size="Size.Small" Outline>Warning</Button>
+                <Button Margin=Margin.Is1.OnAll Color="Color.Dark" Size="Size.Small" Outline>Dark</Button>
+                <Button Margin=Margin.Is1.OnAll Color="Color.Light" Size="Size.Small" Outline>Light</Button>
+                <Button Margin=Margin.Is1.OnAll Color="Color.Default" Size="Size.Small" Outline>Default</Button>
+                <Button Margin=Margin.Is1.OnAll Color="Color.Link" Size="Size.Small" Outline>Link</Button>
+            </Div>
         </CardText>
     </Card>
     <Card Padding="Padding.Is2">
@@ -65,18 +69,58 @@
             <Badge Margin="Margin.Is1.OnAll" Color="Color.Light">Light</Badge>
             <Badge Margin="Margin.Is1.OnAll" Color="Color.Default">Default</Badge>
         </Div>
-        <CardTitle Size="5">Background</CardTitle>
+        <Divider />
         <Div>
-            <Paragraph Background="Background.Primary">Primary</Paragraph>
-            <Paragraph Background="Background.Secondary">Secondary</Paragraph>
-            <Paragraph Background="Background.Danger">Danger</Paragraph>
-            <Paragraph Background="Background.Success">Success</Paragraph>
-            <Paragraph Background="Background.Info">Info</Paragraph>
-            <Paragraph Background="Background.Warning" TextColor="TextColor.Black50">Warning</Paragraph>
-            <Paragraph Background="Background.Dark">Dark</Paragraph>
-            <Paragraph Background="Background.Light" TextColor="TextColor.Black50">Light</Paragraph>
-            <Paragraph Background="Background.Default">Default</Paragraph>
+            <Badge Margin="Margin.Is1.OnAll" Color="Color.Primary" Pill>Primary</Badge>
+            <Badge Margin="Margin.Is1.OnAll" Color="Color.Secondary" Pill>Secondary</Badge>
+            <Badge Margin="Margin.Is1.OnAll" Color="Color.Danger" Pill>Danger</Badge>
+            <Badge Margin="Margin.Is1.OnAll" Color="Color.Success" Pill>Success</Badge>
+            <Badge Margin="Margin.Is1.OnAll" Color="Color.Info" Pill>Info</Badge>
+            <Badge Margin="Margin.Is1.OnAll" Color="Color.Warning" Pill>Warning</Badge>
+            <Badge Margin="Margin.Is1.OnAll" Color="Color.Dark" Pill>Dark</Badge>
+            <Badge Margin="Margin.Is1.OnAll" Color="Color.Light" Pill>Light</Badge>
+            <Badge Margin="Margin.Is1.OnAll" Color="Color.Default" Pill>Default</Badge>
         </Div>
+        <Divider />
+        <CardTitle Size="5">Background & TextColor</CardTitle>
+        <Table>
+            <TableRow>
+                <TableRowCell Background="Background.Primary">Primary</TableRowCell>
+                <TableRowCell TextColor="TextColor.Primary" TextAlignment="TextAlignment.End">Primary</TableRowCell>
+            </TableRow>
+            <TableRow>
+                <TableRowCell Background="Background.Secondary">Secondary</TableRowCell>
+                <TableRowCell TextColor="TextColor.Secondary" TextAlignment="TextAlignment.End">Secondary</TableRowCell>
+            </TableRow>
+            <TableRow>
+                <TableRowCell Background="Background.Danger">Danger</TableRowCell>
+                <TableRowCell TextColor="TextColor.Danger" TextAlignment="TextAlignment.End">Danger</TableRowCell>
+            </TableRow>
+            <TableRow>
+                <TableRowCell Background="Background.Success">Success</TableRowCell>
+                <TableRowCell TextColor="TextColor.Success" TextAlignment="TextAlignment.End">Success</TableRowCell>
+            </TableRow>
+            <TableRow>
+                <TableRowCell Background="Background.Info">Info</TableRowCell>
+                <TableRowCell TextColor="TextColor.Info" TextAlignment="TextAlignment.End">Info</TableRowCell>
+            </TableRow>
+            <TableRow>
+                <TableRowCell Background="Background.Warning" TextColor="TextColor.Black50">Warning</TableRowCell>
+                <TableRowCell TextColor="TextColor.Warning" TextAlignment="TextAlignment.End">Warning</TableRowCell>
+            </TableRow>
+            <TableRow>
+                <TableRowCell Background="Background.Dark">Dark</TableRowCell>
+                <TableRowCell TextColor="TextColor.Dark" TextAlignment="TextAlignment.End">Dark</TableRowCell>
+            </TableRow>
+            <TableRow>
+                <TableRowCell Background="Background.Light" TextColor="TextColor.Black50">Light</TableRowCell>
+                <TableRowCell TextColor="TextColor.Light" TextAlignment="TextAlignment.End">Dark</TableRowCell>
+            </TableRow>
+            <TableRow>
+                <TableRowCell Background="Background.Default">Default</TableRowCell>
+                <TableRowCell TextColor="TextColor.Default" TextAlignment="TextAlignment.End">Default</TableRowCell>
+            </TableRow>
+        </Table>
     </Card>
     <Card Padding="Padding.Is2">
         <CardTitle Size="5">Alerts</CardTitle>
@@ -111,7 +155,7 @@
 </CardGroup>
 
 <Divider />
-<Button Color="Color.Primary" Clicked="MakeErr" Margin="Margin.Is3.FromBottom">Make an error</Button>
+<Button Color="Color.Primary" Clicked="MakeErr">Make an error</Button>
 
 @code {
     LineChart<double> lineChart = new();
