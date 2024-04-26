@@ -24,10 +24,11 @@ namespace C3P1.Components.Account
             if (!Uri.IsWellFormedUriString(uri, UriKind.Relative))
             {
                 // DIRTYFIX for https/http redirection issue
-                // Console.WriteLine("uri = " + uri);
+                Console.WriteLine("uri = " + uri);
                 if (uri.StartsWith("https://"))
                 {
                     uri.Replace("https://", "http://");
+                    Console.WriteLine("uri = " + uri);
                 }
                 // END
                 uri = navigationManager.ToBaseRelativePath(uri);
