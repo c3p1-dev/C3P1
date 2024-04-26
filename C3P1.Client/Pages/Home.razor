@@ -1,7 +1,7 @@
 ﻿@page "/"
 @inject NavBreadcrumbService navBreadcrumb
 
-<PageTitle>C3P1.Net/Home</PageTitle>
+<PageTitle>C3P1.net/Home</PageTitle>
 
 <Div TextAlignment="TextAlignment.Center">
     <Image Source="pix/icons/bb-8.svg" Width="Width.Px(300)" Margin="Margin.IsAuto" Text="C3P1.Net logo" />
@@ -33,6 +33,7 @@
         {
             new Node {Text = "Home", Link = "", Active = true}
         });
+
         base.OnInitialized();
     }
 }
