@@ -23,6 +23,7 @@ namespace C3P1.Components.Account
             // Prevent open redirects.
             if (!Uri.IsWellFormedUriString(uri, UriKind.Relative))
             {
+                Console.WriteLine("uri = " + uri);
                 uri = navigationManager.ToBaseRelativePath(uri);
             }
 
