@@ -23,7 +23,13 @@ namespace C3P1.Components.Account
             // Prevent open redirects.
             if (!Uri.IsWellFormedUriString(uri, UriKind.Relative))
             {
-                Console.WriteLine("uri = " + uri);
+                // DIRTYFIX for https/http redirection issue
+                // Console.WriteLine("uri = " + uri);
+                if (uri.StartsWith("https://"))
+                {
+                    uri.Replace("https://", "http://");
+                }
+                // END
                 uri = navigationManager.ToBaseRelativePath(uri);
             }
 
