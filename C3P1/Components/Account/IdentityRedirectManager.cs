@@ -24,13 +24,13 @@ namespace C3P1.Components.Account
             if (!Uri.IsWellFormedUriString(uri, UriKind.Relative))
             {
                 // DIRTYFIX for https/http redirection issue
-                Console.WriteLine("uri = " + uri);
-                if (uri.StartsWith("https://"))
+                // This is because C3P1 app runs http under apache reverse proxy https
+                if (uri.StartsWith("https"))
                 {
-                    uri = uri.Replace("https://", "http://");
-                    Console.WriteLine("uri = " + uri);
+                    uri = uri.Replace("https", "http");
                 }
                 // END
+
                 uri = navigationManager.ToBaseRelativePath(uri);
             }
 

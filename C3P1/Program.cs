@@ -95,7 +95,7 @@ namespace C3P1
             }
 
             // Https redirection is not needed with Apache reverse proxy
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             app.UseStaticFiles();
             app.UseAntiforgery();
