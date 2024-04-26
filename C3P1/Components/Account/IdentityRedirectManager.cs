@@ -27,7 +27,7 @@ namespace C3P1.Components.Account
                 Console.WriteLine("uri = " + uri);
                 if (uri.StartsWith("https://"))
                 {
-                    uri.Replace("https://", "http://");
+                    uri = uri.Replace("https://", "http://");
                     Console.WriteLine("uri = " + uri);
                 }
                 // END
