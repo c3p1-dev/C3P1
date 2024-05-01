@@ -17,6 +17,7 @@ using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
@@ -42,16 +43,36 @@ namespace C3P1
             builder.Services.AddScoped<IdentityRedirectManager>();
             builder.Services.AddScoped<AuthenticationStateProvider, PersistingRevalidatingAuthenticationStateProvider>();
 
-            builder.Services.AddAuthentication(options =>
+            // Default Authentication setup
+            /*builder.Services.AddAuthentication(options =>
                 {
                     options.DefaultScheme = IdentityConstants.ApplicationScheme;
                     options.DefaultSignInScheme = IdentityConstants.ExternalScheme;
+                })*/
+
+            // Add Authentication with smart DefaultScheme, determined on runtime.
+            builder.Services.AddAuthentication(sharedOptions =>
+                {
+                    sharedOptions.DefaultScheme = "smart";
+                    sharedOptions.DefaultChallengeScheme = "smart";
                 })
-                .AddJwtBearer(options =>
+                .AddPolicyScheme("smart", "Authorization Bearer or Identity cookies", options =>
+                {
+                    options.ForwardDefaultSelector = context =>
+                    {
+                        var authHeader = context.Request.Headers["Authorization"].FirstOrDefault();
+                        if (authHeader?.StartsWith("Bearer ") == true)
+                        {
+                            return JwtBearerDefaults.AuthenticationScheme;
+                        }
+                        return IdentityConstants.ApplicationScheme;
+                    };
+                })
+                .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
                 {
                     options.SaveToken = true;
                     options.RequireHttpsMetadata = true;
-                    
+
                     options.TokenValidationParameters = new TokenValidationParameters()
                     {
                         ValidateIssuer = true,
@@ -59,18 +80,22 @@ namespace C3P1
                         ValidAudience = builder.Configuration["JWT:ValidAudience"],
                         ValidIssuer = builder.Configuration["JWT:ValidIssuer"],
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Secret"]!)),
+                        RoleClaimType = ClaimTypes.Role
                     };
+
                 })
                 .AddIdentityCookies();
 
+            // Not needed with smart determining of AuthenticationScheme on runtime
             // make [Authorize] use JwtBearer and IdentityCookies
-            builder.Services.AddAuthorization(options =>
+            /*builder.Services.AddAuthorization(options =>
                 {
                     options.DefaultPolicy = new AuthorizationPolicyBuilder()
                         .RequireAuthenticatedUser()
                         .AddAuthenticationSchemes(IdentityConstants.ApplicationScheme, JwtBearerDefaults.AuthenticationScheme)
                         .Build();
                 });
+            */
 
             var connectionString = builder.Configuration["ConnectionStrings:DefaultConnection"] ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
             builder.Services.AddDbContext<AppDbContext>(options =>
@@ -126,6 +151,8 @@ namespace C3P1
 
             // Https redirection is not needed with Apache reverse proxy
             //app.UseHttpsRedirection();
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseStaticFiles();
             app.UseAntiforgery();
