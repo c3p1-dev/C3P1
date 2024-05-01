@@ -97,6 +97,7 @@ namespace C3P1
                 });
             */
 
+            // Add main app db context
             var connectionString = builder.Configuration["ConnectionStrings:DefaultConnection"] ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
             builder.Services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlite(connectionString));
@@ -109,6 +110,11 @@ namespace C3P1
                 .AddDefaultTokenProviders();
 
             builder.Services.AddSingleton<IEmailSender<AppUser>, IdentityNoOpEmailSender>();
+
+            // Add Visual Carnet context
+            var visualCarnetConnectionString = builder.Configuration["ConnectionStrings:VisualCarnetConnection"] ?? throw new InvalidOperationException("Connection string 'VisualCarnetConnection' not found.");
+            builder.Services.AddDbContext<VisualCarnetContext>(options =>
+                options.UseSqlite(visualCarnetConnectionString));
 
             // Add Blazorise related services
             builder.Services
