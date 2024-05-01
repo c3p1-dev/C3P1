@@ -39,7 +39,7 @@ namespace C3P1.Client.Services.Apps
 
         public async Task<bool> DeleteTaskAsync(Guid userId, Guid taskId)
         {
-            var result = await _httpClient.DeleteAsync("api/apps/tasklist/" + taskId.ToString());
+            var result = await _httpClient.DeleteAsync($"api/apps/tasklist/{taskId.ToString()}");
 
             return result.IsSuccessStatusCode;
         }

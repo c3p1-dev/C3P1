@@ -1,11 +1,12 @@
 ﻿@page "/apps/cat"
+@using C3P1.Client.Components.Apps.Cat
 @inject NavBreadcrumbService navBreadcrumb
 
 @attribute [Authorize]
 
 <PageTitle>C3P1.net/Cats</PageTitle>
 
-<h3>Cats</h3>
+<Cats />
 
 @code {
     protected override void OnInitialized()

@@ -10,9 +10,15 @@ using C3P1.Components.Account;
 using C3P1.Data;
 using C3P1.Services.Admin;
 using C3P1.Services.Apps;
+using Microsoft.AspNetCore.Authentication.BearerToken;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Security.Claims;
+using System.Text;
 
 namespace C3P1
 {
@@ -41,7 +47,30 @@ namespace C3P1
                     options.DefaultScheme = IdentityConstants.ApplicationScheme;
                     options.DefaultSignInScheme = IdentityConstants.ExternalScheme;
                 })
+                .AddJwtBearer(options =>
+                {
+                    options.SaveToken = true;
+                    options.RequireHttpsMetadata = true;
+                    
+                    options.TokenValidationParameters = new TokenValidationParameters()
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidAudience = builder.Configuration["JWT:ValidAudience"],
+                        ValidIssuer = builder.Configuration["JWT:ValidIssuer"],
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Secret"]!)),
+                    };
+                })
                 .AddIdentityCookies();
+
+            // make [Authorize] use JwtBearer and IdentityCookies
+            builder.Services.AddAuthorization(options =>
+                {
+                    options.DefaultPolicy = new AuthorizationPolicyBuilder()
+                        .RequireAuthenticatedUser()
+                        .AddAuthenticationSchemes(IdentityConstants.ApplicationScheme, JwtBearerDefaults.AuthenticationScheme)
+                        .Build();
+                });
 
             var connectionString = builder.Configuration["ConnectionStrings:DefaultConnection"] ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
             builder.Services.AddDbContext<AppDbContext>(options =>
@@ -78,6 +107,7 @@ namespace C3P1
             // Add app services
             builder.Services.AddTransient<IManageUserService, ManageUserServerService>();
             builder.Services.AddTransient<ITasklistService, TasklistServerService>();
+            builder.Services.AddTransient<ICatService, CatServerService>();
 
             var app = builder.Build();
 

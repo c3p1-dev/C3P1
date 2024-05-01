@@ -1,57 +1,5 @@
 ﻿@rendermode InteractiveAuto
 
-@*
-    <Bar Breakpoint="Breakpoint.Desktop" NavigationBreakpoint="Breakpoint.Tablet" ThemeContrast="ThemeContrast.Dark"
-     Mode="BarMode.VerticalInline" CollapseMode="BarCollapseMode.Small">
-    <BarToggler />
-    <BarBrand>
-        <BarItem>
-            <BarLink To="">
-                <BarIcon IconName="customIcon" />
-                C3P1.net
-            </BarLink>
-        </BarItem>
-    </BarBrand>
-    <BarMenu>
-        <BarStart>
-            <BarItem>
-                <BarLink To="/">
-                    <BarIcon IconName="IconName.Dashboard" />
-                    Dashboard
-                </BarLink>
-            </BarItem>
-            <BarItem>
-                <BarDropdown @bind-Visible="pagesBarVisible">
-                    <BarDropdownToggle>
-                        <BarIcon IconName="IconName.Edit" />
-                        Pages
-                    </BarDropdownToggle>
-                    <BarDropdownMenu>
-                        <BarDropdownItem To="/simple-form">Simple Form</BarDropdownItem>
-                    </BarDropdownMenu>
-                </BarDropdown>
-            </BarItem>
-        </BarStart>
-        <BarEnd>
-            <BarItem>
-                <BarDropdown>
-
-                    <BarDropdownToggle>
-                        <BarIcon IconName="IconName.Smartphone" />
-                        Apps
-                    </BarDropdownToggle>
-                    <BarDropdownMenu>
-                        <BarDropdownItem To="/demo">
-                            
-                            Demo
-                        </BarDropdownItem>
-                    </BarDropdownMenu>
-                </BarDropdown>
-            </BarItem>
-        </BarEnd>
-    </BarMenu>
-</Bar>
-*@
 <Bar Breakpoint="Breakpoint.Desktop" NavigationBreakpoint="Breakpoint.Tablet" ThemeContrast="ThemeContrast.Dark"
      Mode="BarMode.VerticalInline" CollapseMode="BarCollapseMode.Small">
     <BarToggler />
@@ -183,7 +131,7 @@
                         </BarDropdownItem>
                         <AuthorizeView>
                             <BarDropdownItem To="apps/cat">
-                                <BarIcon IconName="IconName.Hospital" /> Cat
+                                <BarIcon Class="fa-solid fa-cat" /> Cat
                             </BarDropdownItem>
                             <BarDropdownItem To="apps/tasklist">
                                 <BarIcon IconName="IconName.List" /> Tasklist
@@ -205,3 +153,56 @@
 @code {
     RenderFragment customIcon =@<img src="/pix/icons/bb-8.svg" style="width:40px; height: 40px" />;
 }
+
+@* Original file
+    <Bar Breakpoint="Breakpoint.Desktop" NavigationBreakpoint="Breakpoint.Tablet" ThemeContrast="ThemeContrast.Dark"
+     Mode="BarMode.VerticalInline" CollapseMode="BarCollapseMode.Small">
+    <BarToggler />
+    <BarBrand>
+        <BarItem>
+            <BarLink To="">
+                <BarIcon IconName="customIcon" />
+                C3P1.net
+            </BarLink>
+        </BarItem>
+    </BarBrand>
+    <BarMenu>
+        <BarStart>
+            <BarItem>
+                <BarLink To="/">
+                    <BarIcon IconName="IconName.Dashboard" />
+                    Dashboard
+                </BarLink>
+            </BarItem>
+            <BarItem>
+                <BarDropdown @bind-Visible="pagesBarVisible">
+                    <BarDropdownToggle>
+                        <BarIcon IconName="IconName.Edit" />
+                        Pages
+                    </BarDropdownToggle>
+                    <BarDropdownMenu>
+                        <BarDropdownItem To="/simple-form">Simple Form</BarDropdownItem>
+                    </BarDropdownMenu>
+                </BarDropdown>
+            </BarItem>
+        </BarStart>
+        <BarEnd>
+            <BarItem>
+                <BarDropdown>
+
+                    <BarDropdownToggle>
+                        <BarIcon IconName="IconName.Smartphone" />
+                        Apps
+                    </BarDropdownToggle>
+                    <BarDropdownMenu>
+                        <BarDropdownItem To="/demo">
+
+                            Demo
+                        </BarDropdownItem>
+                    </BarDropdownMenu>
+                </BarDropdown>
+            </BarItem>
+        </BarEnd>
+    </BarMenu>
+</Bar>
+*@

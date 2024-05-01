@@ -47,6 +47,7 @@ namespace C3P1.Client
             // Add app services
             builder.Services.AddTransient<IManageUserService, ManageUserClientService>();
             builder.Services.AddTransient<ITasklistService, TasklistClientService>();
+            builder.Services.AddTransient<ICatService, CatClientService>();
 
             await builder.Build().RunAsync();
         }

@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace C3P1.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240426214044_CreateCatSchema")]
+    [Migration("20240430153222_CreateCatSchema")]
     partial class CreateCatSchema
     {
         /// <inheritdoc />

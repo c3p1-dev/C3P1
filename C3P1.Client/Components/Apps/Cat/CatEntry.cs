@@ -7,6 +7,7 @@ namespace C3P1.Client.Components.Apps.Cat
         [Key]
         public Guid Id { get; set; }
         public Guid UserId { get; set; }
+        [Required(ErrorMessage = "Owner id must be set")]
         public Guid CatId { get; set; }
         public DateTime CreationTime { get; set; }
         [Required(ErrorMessage = "EntryTime must be set")]
