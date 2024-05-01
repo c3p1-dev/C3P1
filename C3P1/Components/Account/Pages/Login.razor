@@ -65,12 +65,12 @@
                 You can register only on the website.
             </p>
             <p>
-                To sign in with WebApi, send a Http POST request on <br /><code>https://c3p1.net/api/auth/login</code>
-                with credentials in body payload <br />
+                To sign in with WebApi, send a POST request on <code>https://c3p1.net/api/auth/login</code>
+                with credentials in body payload. It will return a valid token for 3hours.<br />
                 <code>
                     {
-                        "username":"nameofuser",
-                        "password":"clearpassword"
+                        "username":"nameOfUser",
+                        "password":"clearPassword"
                     }
                 </code>
             </p>
