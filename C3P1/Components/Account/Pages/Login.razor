@@ -57,11 +57,34 @@
     </div>
     <div class="col-md-6 col-md-offset-2">
         <section>
+            <h3>Which scheme do you need ?</h3>
+            <hr />
+            <p>
+                C3P1.net allows 2 authentication schemes.
+                You can sign in on the website using cookie authentication or WebApi Auth.
+                You can register only on the website.
+            </p>
+            <p>
+                To sign in with WebApi, send a Http POST request on <br /><code>https://c3p1.net/api/auth/login</code>
+                with credentials in body payload <br />
+                <code>
+                    {
+                        "username":"nameofuser",
+                        "password":"clearpassword"
+                    }
+                </code>
+            </p>
+        </section>
+    </div>
+    @*
+    <div class="col-md-6 col-md-offset-2">
+        <section>
             <h3>Use another service to log in.</h3>
             <hr />
             <ExternalLoginPicker />
         </section>
     </div>
+    *@
 </div>
 
 @code {
