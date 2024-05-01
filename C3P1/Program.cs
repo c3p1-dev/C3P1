@@ -112,10 +112,12 @@ namespace C3P1
 
             builder.Services.AddSingleton<IEmailSender<AppUser>, IdentityNoOpEmailSender>();
 
-            // Add Visual Carnet context
+            // Add Visual Carnet context and services
             var visualCarnetConnectionString = builder.Configuration["ConnectionStrings:VisualCarnetConnection"] ?? throw new InvalidOperationException("Connection string 'VisualCarnetConnection' not found.");
             builder.Services.AddDbContext<VisualCarnetContext>(options =>
                 options.UseSqlite(visualCarnetConnectionString));
+
+            builder.Services.AddTransient<IVisualCarnetService, VisualCarnetServerService>();
 
             // Add Blazorise related services
             builder.Services

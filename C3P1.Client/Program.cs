@@ -49,6 +49,9 @@ namespace C3P1.Client
             builder.Services.AddTransient<ITasklistService, TasklistClientService>();
             builder.Services.AddTransient<ICatService, CatClientService>();
 
+            // Add visualcarnet client service
+            builder.Services.AddTransient<IVisualCarnetService, VisualCarnetClientService>();
+
             await builder.Build().RunAsync();
         }
     }
