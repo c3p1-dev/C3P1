@@ -1,4 +1,5 @@
-﻿using C3P1.Client.Components.Apps.Tasklist;
+﻿using C3P1.Client.Components.Admin.ManageUser;
+using C3P1.Client.Components.Apps.Tasklist;
 using C3P1.Client.Services.Admin;
 using C3P1.Data;
 using Microsoft.AspNetCore.Authorization;
@@ -75,28 +76,39 @@ namespace C3P1.WebApi.Admin
         }
 
         // POST : api/admin/[controller]/user/inrole/{role}
-        [HttpPost("user/inrole/{role}")]
-        public async Task<ActionResult<bool>> IsInRoleAsync([FromBody] AppUser user, string role)
+        [HttpPost("user/inrole")]
+        public async Task<ActionResult<bool>> IsInRoleAsync([FromBody] RoleEditModel roleEditModel)
         {
-            bool result = await _manageUserService.IsInRoleAsync(user, role);
+            var user = (await _manageUserService.GetUsersAsync())
+                .Where(u => u.Id == roleEditModel.UserId.ToString())
+                .FirstOrDefault();
 
-            return Ok(result);
+            if (user != null)
+            { 
+                bool result = await _manageUserService.IsInRoleAsync(user, roleEditModel.Role!);
+                return Ok(result);
+            }
+            else
+            {
+                return BadRequest();
+            }
+            
         }
 
         // POST : api/admin/[controller]/user/addrole/{role}
-        [HttpPost("user/addrole/{role}")]
-        public async Task<ActionResult<bool>> AddToRoleAsync([FromBody] Guid userId, string role)
+        [HttpPost("user/addrole/")]
+        public async Task<ActionResult<bool>> AddToRoleAsync([FromBody]RoleEditModel roleEditModel)
         {
-            bool result = await _manageUserService.AddToRoleAsync(userId, role);
+            bool result = await _manageUserService.AddToRoleAsync(roleEditModel.UserId, roleEditModel.Role!);
 
             return Ok(result);
         }
 
         // POST : api/admin/[controller]/user/removerole/{role}
-        [HttpPost("user/removerole/{role}")]
-        public async Task<ActionResult<bool>> RemoveFromRoleAsync([FromBody] Guid userId, string role)
+        [HttpPost("user/removerole/")]
+        public async Task<ActionResult<bool>> RemoveFromRoleAsync([FromBody]RoleEditModel roleEditModel)
         {
-            bool result = await _manageUserService.RemoveFromRoleAsync(userId, role);
+            bool result = await _manageUserService.RemoveFromRoleAsync(roleEditModel.UserId, roleEditModel.Role!);
 
             return Ok(result);
         }

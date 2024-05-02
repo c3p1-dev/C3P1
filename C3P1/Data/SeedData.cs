@@ -31,6 +31,13 @@ namespace C3P1.Data
                 await roleManager.CreateAsync(new IdentityRole("User"));
             }
 
+            // Create VisualCarnet Role
+            alreadyExists = await roleManager.RoleExistsAsync("VisualCarnet");
+            if (!alreadyExists)
+            {
+                await roleManager.CreateAsync(new IdentityRole("VisualCarnet"));
+            }
+
         }
 
         private static async Task EnsureTestAdminAsync(UserManager<AppUser> userManager)

@@ -1,4 +1,5 @@
 ﻿
+using C3P1.Client.Components.Admin.ManageUser;
 using C3P1.Data;
 using System.Net.Http.Json;
 
@@ -67,7 +68,8 @@ namespace C3P1.Client.Services.Admin
         }
         public async Task<bool> IsInRoleAsync(AppUser user, string role)
         {
-            var result = await _httpClient.PostAsJsonAsync("api/admin/manageuser/user/inrole/" + role, user);
+            RoleEditModel data = new RoleEditModel() { UserId = Guid.Parse(user.Id), Role = role };
+            var result = await _httpClient.PostAsJsonAsync("api/admin/manageuser/user/inrole", data);
 
             var success = await result.Content.ReadAsStringAsync();
 
@@ -82,7 +84,8 @@ namespace C3P1.Client.Services.Admin
         }
         public async Task<bool> AddToRoleAsync(Guid userId, string role)
         {
-            var result = await _httpClient.PostAsJsonAsync("api/admin/manageuser/user/addrole/" + role, userId);
+            RoleEditModel data = new RoleEditModel() { Role = role, UserId = userId };
+            var result = await _httpClient.PostAsJsonAsync<RoleEditModel>("api/admin/manageuser/user/addrole", data);
 
             var success = await result.Content.ReadAsStringAsync();
 
@@ -97,7 +100,8 @@ namespace C3P1.Client.Services.Admin
         }
         public async Task<bool> RemoveFromRoleAsync(Guid userId, string role)
         {
-            var result = await _httpClient.PostAsJsonAsync("api/admin/manageuser/user/removerole/" + role, userId);
+            RoleEditModel data = new RoleEditModel() { Role = role, UserId = userId };
+            var result = await _httpClient.PostAsJsonAsync<RoleEditModel>("api/admin/manageuser/user/removerole", data);
 
             var success = await result.Content.ReadAsStringAsync();
 

@@ -35,6 +35,7 @@
         </Div>
         
         <Paragraph TextColor="TextColor.Dark" Margin="Margin.Is2.FromBottom">
+            @*
             @if (data.Item.IsAdmin() == true)
             {
                 <Badge Color="Color.Warning">Admin</Badge>
@@ -42,15 +43,32 @@
             else
             {
                 <Badge Color="Color.Primary">User</Badge>
+                
+            }
+            *@
+            @foreach (var role in data.Item.Roles!)
+            {
+                if (role == "Admin")
+                {
+                    <Badge Color="Color.Warning" Margin="Margin.Is1.FromEnd">Admin</Badge>
+                }
+                else if (role == "User")
+                {
+                    <Badge Color="Color.Primary" Margin="Margin.Is1.FromEnd">User</Badge>
+                }
+                else
+                {
+                    <Badge Color="Color.Secondary" Margin="Margin.Is1.FromEnd">@role</Badge>
+                }
             }
 
             @if (data.Item.User!.EmailConfirmed == true)
             {
-                <Badge Color="Color.Success" Margin="Margin.Is1.FromStart">Verified email</Badge>
+                <Badge Color="Color.Success" Margin="Margin.Is1.FromEnd">Verified email</Badge>
             }
             else
             {
-                <Badge Color="Color.Warning" TextColor="TextColor.Dark" Margin="Margin.Is1.FromStart">Unverified email</Badge>
+                <Badge Color="Color.Warning" TextColor="TextColor.Dark" Margin="Margin.Is1.FromEnd">Unverified email</Badge>
             }
         </Paragraph>
         
