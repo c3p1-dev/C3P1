@@ -167,6 +167,7 @@ namespace C3P1
             app.UseAuthorization();
 
             app.UseStaticFiles();
+            app.MapStaticAssets();
             app.UseAntiforgery();
 
             // Map webapi controllers
