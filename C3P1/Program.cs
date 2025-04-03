@@ -166,7 +166,7 @@ namespace C3P1
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.UseStaticFiles();
+            //app.UseStaticFiles(); -> Try without UseStaticFiles() to hunt exception
             app.MapStaticAssets();
             app.UseAntiforgery();
 
