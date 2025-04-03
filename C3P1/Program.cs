@@ -28,6 +28,9 @@ namespace C3P1
     {
         public static void Main(string[] args)
         {
+            // Init SQLitePCLRaw_bundle_sqlite (= use system SQLite)
+            SQLitePCL.Batteries_V2.Init();
+
             var builder = WebApplication.CreateBuilder(args);
 
             // Add webapi controllers services
