@@ -10,6 +10,7 @@ using C3P1.Components.Account;
 using C3P1.Data;
 using C3P1.Services.Admin;
 using C3P1.Services.Apps;
+using C3P1.Middleware;
 using Microsoft.AspNetCore.Authentication.BearerToken;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -32,6 +33,7 @@ namespace C3P1
             SQLitePCL.Batteries_V2.Init();
 
             var builder = WebApplication.CreateBuilder(args);
+            builder.WebHost.UseKestrel(options => options.AddServerHeader = false);
 
             // Add webapi controllers services
             builder.Services.AddControllers();
@@ -147,6 +149,9 @@ namespace C3P1
             builder.Services.AddTransient<ICatService, CatServerService>();
 
             var app = builder.Build();
+
+            // My Middlewares
+            app.UseMiddleware<DenyEmptyHost>();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
