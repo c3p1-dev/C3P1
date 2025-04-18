@@ -152,6 +152,7 @@ namespace C3P1
 
             // My Middlewares
             app.UseMiddleware<DenyEmptyHost>();
+            app.UseMiddleware<ExceptionLogger>();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
