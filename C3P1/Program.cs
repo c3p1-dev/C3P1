@@ -66,7 +66,7 @@ namespace C3P1
                 {
                     options.ForwardDefaultSelector = context =>
                     {
-                        var authHeader = context.Request.Headers["Authorization"].FirstOrDefault();
+                        var authHeader = context.Request.Headers.Authorization.FirstOrDefault();
                         if (authHeader?.StartsWith("Bearer ") == true)
                         {
                             return JwtBearerDefaults.AuthenticationScheme;
@@ -109,6 +109,7 @@ namespace C3P1
                 options.UseSqlite(connectionString));
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
+            // Add Identity
             builder.Services.AddIdentityCore<AppUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<AppDbContext>()
@@ -152,7 +153,7 @@ namespace C3P1
 
             // My Middlewares
             app.UseMiddleware<DenyEmptyHost>();
-            app.UseMiddleware<ExceptionLogger>();
+            app.UseMiddleware<ConsoleExceptionLogger>();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
