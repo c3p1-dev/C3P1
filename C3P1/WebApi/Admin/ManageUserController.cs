@@ -33,7 +33,6 @@ namespace C3P1.WebApi.Admin
             }
         }
 
-
         // GET : api/admin/[controller]/list/inrole/{role}
         [HttpGet("list/inrole/{role}")]
         public async Task<ActionResult<IEnumerable<TodoItem>>> GetUsersInRoleAsync(string role)
@@ -66,7 +65,7 @@ namespace C3P1.WebApi.Admin
             }
         }
 
-        // POST : api/admin/[controller]user/roles
+        // POST : api/admin/[controller]/user/roles
         [HttpPost("user/roles")]
         public async Task<ActionResult<List<string>>> GetUserRolesAsync([FromBody] AppUser user)
         {
