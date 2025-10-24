@@ -28,7 +28,7 @@ namespace C3P1.Client
                     options.Immediate = true;
                     // unsafe way to store product token
                     // TODO : figure out how to store secret strings in wasm
-                    options.ProductToken = builder.Configuration["Blazorise:ProductToken"] ?? throw new InvalidOperationException("Blazorise license token 'ProductToken' not found."); ;
+                    options.ProductToken = builder.Configuration["Blazorise:ProductToken"] ?? throw new InvalidOperationException("Blazorise license token 'ProductToken' not found.");
                 })
                 .AddBootstrap5Providers()
                 .AddFontAwesomeIcons();
